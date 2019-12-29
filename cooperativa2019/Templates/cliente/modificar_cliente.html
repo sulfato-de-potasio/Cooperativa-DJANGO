@@ -1,0 +1,105 @@
+<html>
+	
+	<head>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+		<title> MODIFICAR CLIENTE </title>
+		
+		<style>
+			
+			body{
+				background: url("https://img.freepik.com/vector-gratis/fondo-pincel-acrilico-abstracto-azul-textura-fondo_53876-86373.jpg?size=626&ext=jpg") no-repeat;
+		background-size: cover;
+				font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+			}
+
+			input{
+				border-radius: 5px;
+				padding: 20px;
+				background-color: #CCDFDD;
+				border: 2px;
+				border-radius: 20px;
+				width: 100%;
+			}
+
+			select {
+			  width: 100%;
+			  padding: 16px 20px;
+ 			  border: none;
+			  border-radius: 4px;
+  			  background-color: #CCDFDD;
+			}
+
+			textarea{
+				border-radius: 5px;
+				padding: 20px;
+				background-color: #CCDFDD;
+				border: 2px;
+				border-radius: 20px;
+				width: 100%;
+				height: 120px;
+			}
+
+			label{
+
+				color: #000000;
+				padding: 8px;
+				font-family: sans-serif;
+				font-size: 30px;
+				font-weight: bold;
+				margin-left: 50%;
+
+			}
+
+			li{
+				display: none;
+			}
+
+		</style>
+
+
+	</head>
+	
+	<center>
+		<body>
+
+			<form method="POST"> {% csrf_token %}
+
+				<div class="form-group" style="width: 35%">
+
+					{{form}}	
+											
+				</div>
+
+
+				<button type="submit" class="btn btn-alert"> Guardar Cambios <img src="http://www.iconarchive.com/download/i34209/treetog/i/Floppy-Small.ico" width="15px" height="15px" /> </button> 
+
+				<a class="btn btn-danger" href="/cliente"> Cancelar </a>
+
+			</form>
+
+	
+		</body>
+
+	</center>
+
+	<script>
+		$(document).ready(function () {
+
+			$("#id_cedula").attr("readonly","readonly");
+			$("#id_nombres").attr("readonly","readonly");
+			$("#id_apellidos").attr("readonly","readonly");
+			$("#id_fecha_nacimiento").attr("readonly","readonly");
+
+		});
+
+	</script>
+
+</html>
+
+
+
+

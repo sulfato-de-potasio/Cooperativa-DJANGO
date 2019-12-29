@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+<title> Cuentas </title>
+<style>
+	
+	body{
+		background: url("https://img.freepik.com/vector-gratis/fondo-pincel-acrilico-abstracto-azul-textura-fondo_53876-86373.jpg?size=626&ext=jpg") no-repeat;
+		background-size: cover;
+	}
+
+	h1{
+		color: #30AF00;
+		font-weight: bold;
+		font-size: 40px;
+		font-family: serif;
+		padding: 20px;
+	}
+
+</style>
+
+<div class="row">
+
+  <!-- Grid column -->
+  <div class="col-md-6">
+
+    <ul class="nav blue-gradient py-4 mb-md-0 mb-4 font-weight-bold z-depth-1">
+      <li class="nav-item">
+        <a class="nav-link active white-text" href="{% url 'crear_cuentas' dni=cte.cedula %}">Crear Cuenta</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active white-text" href="/cliente/">Volver</a>
+      </li>
+    </ul>
+
+  </div>
+  <!-- Grid column -->
+
+</div>
+
+{% if messages %}
+      <ul class="messages">
+          {% for msg in messages %}
+            <li>
+                <div class="alert alert-{{msg.level_tag}}" role="alert">
+                    {{msg.message}}
+                </div>
+            </li>
+          {% endfor %}
+      </ul>
+{% endif %}
+
+<h1> Cuentas de {{cte.nombres}} {{cte.apellidos}}</h1>
+
+
+	
+	<table class="table table-success table-bordered" id="tablina">
+		
+		<tr>
+			
+			<th> Numero </th>			
+			<th> Tipo de cuenta </th>
+			<th> Saldo </th>
+			<th> Fecha apertura </th>
+			<th> Estado </th>			
+			<th> Transaccion </th>			
+			<th> Eliminar </th>
+		</tr>
+			
+			{% for c in ctas %}
+
+			<tr>
+				<td> {{c.numero}} </td>								
+				<td> {{c.tipo_cuenta}} </td>
+				<td> {{c.saldo}} </td>
+				<td> {{c.fecha_apertura}} </td>
+				{% if c.estado %}
+				<td> Activa </td>
+				{% else %}
+				<td> Inactiva </td>
+				{% endif %}		
+				<td> <a href="{% url 'deposito' numero=c.numero %}" class="btn btn-success"> Depositar </a> 
+				<a href="{% url 'retiro' numero=c.numero %}" class="btn btn-primary"> Retirar </a> 
+				<a href="{% url 'transferencia' numero=c.numero %}" class="btn btn-warning"> Transferir </a> 
+				</td>
+				<td><a href="{% url 'borrar_cuenta' numero=c.numero %}" class="btn btn-danger"> Borrar </a> </td>
+
+			</tr>	
+
+			{% endfor %}
+
+	</table>
+
+<script type="text/javascript">
+		
+	$(document).ready( function () {
+    $('#tablina').DataTable();
+} );
+
+</script>
